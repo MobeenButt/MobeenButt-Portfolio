@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Apply saved theme from localStorage if any
+    const savedTheme = localStorage.getItem('portfolio-theme');
+    if (savedTheme) {
+        applyTheme(savedTheme);
+        
+        // Update active theme option
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.theme === savedTheme) {
+                option.classList.add('active');
+            }
+        });
+    }
+
     // Mobile menu toggle
     const menuToggle = document.getElementById('menu-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -27,6 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             }
+        });
+    });
+    
+    // Theme switcher
+    const themeOptions = document.querySelectorAll('.theme-option');
+    themeOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const theme = option.dataset.theme;
+            
+            // Remove active class from all options
+            themeOptions.forEach(o => o.classList.remove('active'));
+            
+            // Add active class to clicked option
+            option.classList.add('active');
+            
+            // Apply theme
+            applyTheme(theme);
+            
+            // Save theme preference
+            localStorage.setItem('portfolio-theme', theme);
         });
     });
     
@@ -154,9 +188,53 @@ function displayRepositories(repositories) {
         return;
     }
     
+    // List of repositories to exclude
+    const excludeRepos = [
+        "PD", "HELLO-world", "hello-world", "Even-First", "MobeenButt1",
+        "ProgrammingFundamental", "Mobeen_Butt", "OOP", "TASK1", "OOP_LAB", 
+        "OOP_PD", "Game_C-", "DSA-LAB", "MobeenButt"
+    ];
+    
+    // Filter repositories
+    const filteredRepos = repositories.filter(repo => 
+        !excludeRepos.some(excluded => 
+            repo.name.toLowerCase() === excluded.toLowerCase()
+        )
+    );
+    
+    if (filteredRepos.length === 0) {
+        projectsContainer.innerHTML = `
+            <div class="no-projects">
+                <p>No featured projects available.</p>
+            </div>
+        `;
+        return;
+    }
+    
     let html = '';
     
-    repositories.forEach(repo => {
+    // Project background images based on language or name
+    const getProjectImage = (repo) => {
+        if (repo.name.toLowerCase().includes('quiz')) {
+            return 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.name.toLowerCase().includes('railway')) {
+            return 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.name.toLowerCase().includes('game')) {
+            return 'https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.language === 'Python') {
+            return 'https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.language === 'C#') {
+            return 'https://images.unsplash.com/photo-1599507593499-a3f7d7d97667?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.language === 'C++') {
+            return 'https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else if (repo.language === 'PHP') {
+            return 'https://images.unsplash.com/photo-1599507593548-0187ac4043c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        } else {
+            return 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80';
+        }
+    };
+    
+    filteredRepos.forEach(repo => {
         // Format date
         const updatedDate = new Date(repo.updated).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -164,8 +242,13 @@ function displayRepositories(repositories) {
             day: 'numeric'
         });
         
+        const projectImage = getProjectImage(repo);
+        
         html += `
             <div class="project-card">
+                <div class="project-image" style="background-image: url('${projectImage}')">
+                    <div class="project-overlay"></div>
+                </div>
                 <div class="project-info">
                     <h3>${repo.name}</h3>
                     <p>${repo.description}</p>
@@ -190,6 +273,10 @@ function displayRepositories(repositories) {
                                     <i class="fas fa-code-branch"></i> ${repo.forks}
                                 </span>
                             ` : ''}
+                            
+                            <span title="Updated">
+                                <i class="fas fa-calendar-alt"></i> ${updatedDate}
+                            </span>
                         </div>
                     </div>
                     
@@ -241,5 +328,29 @@ function updateGitHubStats(stats) {
     
     if (stats.followers) {
         document.getElementById('followers-count').textContent = stats.followers;
+    }
+}
+
+// Apply theme to the website
+function applyTheme(theme) {
+    // Remove any existing theme first
+    document.body.removeAttribute('data-theme');
+    
+    // If it's not the default theme, apply the selected theme
+    if (theme !== 'default') {
+        document.body.setAttribute('data-theme', theme);
+    }
+    
+    // Extra UI adjustments based on theme (optional)
+    if (theme === 'dark') {
+        // Any extra dark mode specific adjustments
+        document.querySelectorAll('.menu-toggle i').forEach(icon => {
+            icon.style.color = '#e2e8f0';
+        });
+    } else {
+        // Reset any theme-specific adjustments
+        document.querySelectorAll('.menu-toggle i').forEach(icon => {
+            icon.style.color = '';
+        });
     }
 }
