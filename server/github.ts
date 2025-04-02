@@ -14,7 +14,7 @@ export async function fetchRepositories() {
   const response = await axios.get(`${GITHUB_API_BASE}/users/${GITHUB_USERNAME}/repos`, {
     params: {
       sort: "updated",
-      per_page: 6
+      per_page: 100 // Increased to get all repositories
     }
   });
   
