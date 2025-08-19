@@ -10,12 +10,12 @@ export default defineConfig({
     runtimeErrorOverlay(),
     themePlugin(),
     ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
+      process.env.REPL_ID !== undefined
       ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
+        await import("@replit/vite-plugin-cartographer").then((m) =>
+          m.cartographer(),
+        ),
+      ]
       : []),
   ],
   resolve: {
@@ -26,7 +26,7 @@ export default defineConfig({
     },
   },
   root: path.resolve(import.meta.dirname, "client"),
-  base: process.env.NODE_ENV === "production" ? "/portfolio/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/MobeenButt-Portfolio.github.io/" : "/",
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
