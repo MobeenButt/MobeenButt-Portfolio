@@ -19,3 +19,6 @@ package.json
 netlify.toml
 package.json
 package-lock.json
+deploy-netlify.bat
+package-lock.json
+package.json
