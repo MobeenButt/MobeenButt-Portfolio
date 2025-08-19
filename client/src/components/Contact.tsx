@@ -17,14 +17,14 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin, 
-  Twitter, 
-  Instagram 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  Instagram
 } from "lucide-react";
 
 const contactFormSchema = z.object({
@@ -51,7 +51,7 @@ export default function Contact() {
   });
 
   const { mutate } = useMutation({
-    mutationFn: (data: ContactFormValues) => 
+    mutationFn: (data: ContactFormValues) =>
       apiRequest("POST", "/api/contact", data),
     onSuccess: () => {
       toast({
@@ -79,31 +79,30 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="contact" className="section-padding bg-white">
+      <div className="container-custom">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold">Get In Touch</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mt-4 mb-6 rounded-full"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Have a question or want to work together? Feel free to contact me!
+          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">Get In Touch</h2>
+          <div className="w-24 h-1 bg-black mx-auto mb-6"></div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your ideas to life? Let's start a conversation about your next project.
           </p>
         </motion.div>
 
-        <div className="flex flex-col md:flex-row gap-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
           <motion.div
-            className="md:w-1/2"
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="bg-white p-8 rounded-lg shadow-sm h-full">
+            <div className="card-professional p-8 h-full">
               <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
@@ -183,9 +182,9 @@ export default function Contact() {
                     )}
                   />
 
-                  <Button 
-                    type="submit" 
-                    className="w-full" 
+                  <Button
+                    type="submit"
+                    className="btn-primary w-full"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
@@ -196,109 +195,99 @@ export default function Contact() {
           </motion.div>
 
           <motion.div
-            className="md:w-1/2"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="bg-white p-8 rounded-lg shadow-sm h-full">
-              <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+            <div className="card-professional p-8 h-full">
+              <h3 className="text-2xl font-bold text-black mb-8">Let's Connect</h3>
 
-              <div className="space-y-6">
-                <div className="flex items-start">
-                  <div className="bg-primary text-white p-3 rounded-full mr-4">
-                    <Mail className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-700 font-medium">Email</h4>
-                    <a
-                      href="mailto:contact@example.com"
-                      className="text-primary hover:text-secondary transition"
-                    >
-                      contact@example.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary text-white p-3 rounded-full mr-4">
-                    <Phone className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-700 font-medium">Phone</h4>
-                    <a
-                      href="tel:+123456789"
-                      className="text-primary hover:text-secondary transition"
-                    >
-                      +1 (234) 567-89
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary text-white p-3 rounded-full mr-4">
-                    <MapPin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-700 font-medium">Location</h4>
-                    <p className="text-gray-600">New York, United States</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start">
-                  <div className="bg-primary text-white p-3 rounded-full mr-4">
-                    <Github className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-gray-700 font-medium">GitHub</h4>
-                    <a
-                      href="https://github.com/MobeenButt"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-secondary transition"
-                    >
-                      github.com/MobeenButt
-                    </a>
-                  </div>
-                </div>
+              <div className="space-y-8">
+                {[
+                  {
+                    icon: Mail,
+                    title: "Email",
+                    value: "contact@mobeenbutt.com",
+                    href: "mailto:contact@mobeenbutt.com",
+                    description: "Drop me a line anytime"
+                  },
+                  {
+                    icon: Phone,
+                    title: "Phone",
+                    value: "+1 (555) 123-4567",
+                    href: "tel:+15551234567",
+                    description: "Available Mon-Fri, 9AM-6PM EST"
+                  },
+                  {
+                    icon: MapPin,
+                    title: "Location",
+                    value: "New York, United States",
+                    href: null,
+                    description: "Open to remote opportunities"
+                  },
+                  {
+                    icon: Github,
+                    title: "GitHub",
+                    value: "github.com/MobeenButt",
+                    href: "https://github.com/MobeenButt",
+                    description: "Check out my latest projects"
+                  }
+                ].map((item, index) => (
+                  <motion.div
+                    key={item.title}
+                    className="flex items-start space-x-4 p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all duration-200"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    whileHover={{ x: 4 }}
+                  >
+                    <div className="p-3 bg-black text-white rounded-lg">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-black mb-1">{item.title}</h4>
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith('http') ? '_blank' : undefined}
+                          rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          className="text-gray-700 hover:text-black transition-colors duration-200 font-medium"
+                        >
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-gray-700 font-medium">{item.value}</p>
+                      )}
+                      <p className="text-sm text-gray-500 mt-1">{item.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
-              <div className="mt-8">
-                <h4 className="text-gray-700 font-medium mb-4">Follow Me</h4>
+              <div className="mt-10 pt-8 border-t border-gray-200">
+                <h4 className="font-semibold text-black mb-6">Follow My Journey</h4>
                 <div className="flex space-x-4">
-                  <a
-                    href="https://github.com/MobeenButt"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-200 hover:bg-primary text-gray-700 hover:text-white p-3 rounded-full transition"
-                  >
-                    <Github className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-200 hover:bg-primary text-gray-700 hover:text-white p-3 rounded-full transition"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-200 hover:bg-primary text-gray-700 hover:text-white p-3 rounded-full transition"
-                  >
-                    <Twitter className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-gray-200 hover:bg-primary text-gray-700 hover:text-white p-3 rounded-full transition"
-                  >
-                    <Instagram className="h-5 w-5" />
-                  </a>
+                  {[
+                    { href: "https://github.com/MobeenButt", icon: Github, label: "GitHub" },
+                    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+                    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+                    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
+                  ].map(({ href, icon: Icon, label }) => (
+                    <motion.a
+                      key={label}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 bg-gray-100 hover:bg-black text-gray-700 hover:text-white rounded-lg transition-all duration-200 shadow-elegant hover:shadow-elegant-lg"
+                      whileHover={{ y: -2, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={label}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </motion.a>
+                  ))}
                 </div>
               </div>
             </div>

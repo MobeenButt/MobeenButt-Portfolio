@@ -44,8 +44,9 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  // Serve static files from root directory
-  app.use(express.static(rootDir));
+  // Serve static files from the built client
+  const clientDistPath = path.join(rootDir, 'dist', 'public');
+  app.use(express.static(clientDistPath));
 
   // API error handler
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
@@ -56,20 +57,16 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // Fallback to index.html for all other routes
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(rootDir, 'index.html'));
+  // Fallback to index.html for all other routes (SPA routing)
+  app.get('*', (_req, res) => {
+    res.sendFile(path.join(clientDistPath, 'index.html'));
   });
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
   const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
+  server.listen(port, () => {
     log(`serving on port ${port}`);
   });
 })();

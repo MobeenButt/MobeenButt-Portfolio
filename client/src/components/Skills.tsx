@@ -34,70 +34,134 @@ const tools = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <section id="skills" className="section-padding bg-muted/30 relative overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container-custom relative z-10">
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-24"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-3xl font-bold">My Skills</h2>
-          <div className="h-1 w-20 bg-primary mx-auto mt-4 mb-6 rounded-full"></div>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Technologies and tools I work with
-          </p>
+          <motion.h2 
+            className="heading-xl gradient-text mb-8"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Skills & Expertise
+          </motion.h2>
+          <motion.div 
+            className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-8 rounded-full shadow-glow"
+            initial={{ width: 0 }}
+            whileInView={{ width: 128 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          ></motion.div>
+          <motion.p 
+            className="text-lead max-w-3xl mx-auto"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Technologies and tools I use to bring ideas to life
+          </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="text-xl font-semibold mb-6">Technical Skills</h3>
+            <motion.h3 
+              className="heading-md gradient-text-static mb-12"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Technical Proficiency
+            </motion.h3>
 
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                className="mb-5"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
-                <div className="flex justify-between mb-1">
-                  <span className="text-gray-700 font-medium">{skill.name}</span>
-                  <span className="text-gray-600">{skill.value}%</span>
-                </div>
-                <Progress value={skill.value} className="h-2.5" />
-              </motion.div>
-            ))}
+            <div className="space-y-8">
+              {skills.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  className="card-glass p-6 hover-lift"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex justify-between items-center mb-4">
+                    <span className="text-lg font-semibold text-foreground">{skill.name}</span>
+                    <span className="text-sm font-bold text-muted-foreground bg-accent px-3 py-1 rounded-full">
+                      {skill.value}%
+                    </span>
+                  </div>
+                  <div className="relative">
+                    <Progress value={skill.value} className="h-3 bg-muted" />
+                    <div 
+                      className="absolute top-0 left-0 h-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full transition-all duration-1000 ease-out shadow-glow"
+                      style={{ width: `${skill.value}%` }}
+                    ></div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-xl font-semibold mb-6">Tools & Technologies</h3>
+            <motion.h3 
+              className="heading-md gradient-text-static mb-12"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              Tools & Technologies
+            </motion.h3>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
               {tools.map((tool, index) => (
                 <motion.div
                   key={tool.name}
-                  className="flex flex-col items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition cursor-pointer"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="card-glass p-6 hover-lift hover-glow group relative overflow-hidden text-center"
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.05 }}
                 >
-                  <tool.icon className="text-3xl text-primary mb-2" />
-                  <span className="text-gray-700 font-medium">{tool.name}</span>
+                  {/* Hover Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-4 flex justify-center">
+                      <div className="p-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl group-hover:from-blue-500/30 group-hover:to-purple-500/30 transition-all duration-300">
+                        <tool.icon className="text-3xl text-foreground group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    </div>
+                    <span className="text-sm font-semibold text-foreground group-hover:gradient-text-static transition-all duration-300">
+                      {tool.name}
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
