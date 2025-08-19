@@ -129,36 +129,36 @@ Update the following files to customize with your information:
 - `GET /api/github/stats` - Fetch GitHub statistics
 - `POST /api/contact` - Submit contact form
 
-## 🚀 Deployment
+## 🚀 GitHub Pages Deployment (Web Interface Only)
 
-The application can be deployed to various platforms:
+This project is configured for automatic deployment to GitHub Pages using GitHub Actions. **No bash scripts or local tools required!**
 
-### GitHub Pages (Recommended for Static Sites)
-1. **Enable GitHub Pages in your repository**
-   - Go to Settings → Pages
-   - Source: "Deploy from a branch"
-   - Branch: `gh-pages` (will be created automatically)
+### Setup Instructions:
 
-2. **Deploy using the script**
-   ```bash
-   # On Linux/Mac
-   chmod +x deploy-github-pages.sh
-   ./deploy-github-pages.sh
+1. **Create Repository**: Create a new repository on GitHub named `portfolio`
 
-   # On Windows
-   deploy-github-pages.bat
+2. **Upload Files**: Use GitHub's web interface to upload all project files
 
-   # Or manually
-   npm run deploy:gh-pages
-   ```
+3. **Enable GitHub Pages**:
+   - Go to repository Settings → Pages
+   - Under Source, select "GitHub Actions"
+   - Save changes
 
-3. **Automatic deployment** (Optional)
-   - The GitHub Actions workflow will automatically deploy on push to main/master
-   - Your site will be live at: `https://yourusername.github.io/portfolio`
+4. **Configure Permissions**:
+   - Go to Settings → Actions → General
+   - Select "Read and write permissions"
+   - Check "Allow GitHub Actions to create and approve pull requests"
+   - Save
 
-4. **Configuration**
-   - Update `GITHUB_USERNAME` in `client/src/lib/github-client.ts`
-   - Optionally add `VITE_GITHUB_TOKEN` environment variable for higher API limits
+5. **Deploy**: Push to main/master branch triggers automatic deployment
+
+Your site will be available at: `https://yourusername.github.io/portfolio`
+
+### What's Included:
+- ✅ Automatic GitHub Actions deployment
+- ✅ Modern React + TypeScript setup
+- ✅ No bash scripts or local tools needed
+- ✅ Clean, minimal configuration
 
 ### Netlify (For Full-Stack with Serverless)
 1. **Connect your repository to Netlify**
