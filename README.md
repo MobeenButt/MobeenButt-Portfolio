@@ -133,7 +133,34 @@ Update the following files to customize with your information:
 
 The application can be deployed to various platforms:
 
-### Netlify (Recommended for Static + Serverless)
+### GitHub Pages (Recommended for Static Sites)
+1. **Enable GitHub Pages in your repository**
+   - Go to Settings → Pages
+   - Source: "Deploy from a branch"
+   - Branch: `gh-pages` (will be created automatically)
+
+2. **Deploy using the script**
+   ```bash
+   # On Linux/Mac
+   chmod +x deploy-github-pages.sh
+   ./deploy-github-pages.sh
+
+   # On Windows
+   deploy-github-pages.bat
+
+   # Or manually
+   npm run deploy:gh-pages
+   ```
+
+3. **Automatic deployment** (Optional)
+   - The GitHub Actions workflow will automatically deploy on push to main/master
+   - Your site will be live at: `https://yourusername.github.io/portfolio`
+
+4. **Configuration**
+   - Update `GITHUB_USERNAME` in `client/src/lib/github-client.ts`
+   - Optionally add `VITE_GITHUB_TOKEN` environment variable for higher API limits
+
+### Netlify (For Full-Stack with Serverless)
 1. **Connect your repository to Netlify**
    - Go to [Netlify](https://netlify.com) and connect your GitHub repository
    - Or use Netlify CLI: `npm install -g netlify-cli && netlify deploy`
