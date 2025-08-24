@@ -13,6 +13,7 @@ export default function Home() {
   // Add page title
   useEffect(() => {
     document.title = "Mobeen Butt | Portfolio";
+    console.log("Home component mounted successfully!");
   }, []);
 
   return (

@@ -31,6 +31,8 @@ function Router() {
 }
 
 function App() {
+  console.log("App component rendering...");
+  
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>

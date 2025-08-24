@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "license": "MIT",
-  "homepage": "https://mobeenbutt.github.io/MobeenButt-Portfolio.github.io",
+  "homepage": "https://mobeenbutt.github.io/MobeenButt-Portfolio",
   "scripts": {
     "dev": "vite",
     "dev:server": "tsx server/index.ts",
