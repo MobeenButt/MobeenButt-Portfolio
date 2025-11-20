@@ -242,7 +242,7 @@ export default function Contact() {
                     icon: Phone,
                     title: "Phone",
                     value: "+92 3245645104",
-                    description: "Available 24/7
+                    description: "Available 24/7"
                   },
                   
                   {
