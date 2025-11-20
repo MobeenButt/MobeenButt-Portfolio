@@ -100,7 +100,7 @@ export default function About() {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 whileHover={{ scale: 1.05, y: -4 }}
               >
-                <div className="text-3xl font-black gradient-text mb-2">3+</div>
+                <div className="text-3xl font-black gradient-text mb-2">1</div>
                 <div className="text-sm text-gray-300 font-medium">Years Experience</div>
                 <div className="w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-3"></div>
               </motion.div>
