@@ -234,24 +234,17 @@ export default function Contact() {
                   {
                     icon: Mail,
                     title: "Email",
-                    value: "contact@mobeenbutt.com",
-                    href: "mailto:contact@mobeenbutt.com",
+                    value: "mobeen914butt@gmail.com",
+                    href: "mailto:mobeen914butt@gmail.com",
                     description: "Drop me a line anytime"
                   },
                   {
                     icon: Phone,
                     title: "Phone",
-                    value: "+1 (555) 123-4567",
-                    href: "tel:+15551234567",
-                    description: "Available Mon-Fri, 9AM-6PM EST"
+                    value: "+92 3245645104",
+                    description: "Available 24/7
                   },
-                  {
-                    icon: MapPin,
-                    title: "Location",
-                    value: "New York, United States",
-                    href: null,
-                    description: "Open to remote opportunities"
-                  },
+                  
                   {
                     icon: Github,
                     title: "GitHub",
@@ -297,9 +290,8 @@ export default function Contact() {
                 <div className="flex space-x-4">
                   {[
                     { href: "https://github.com/MobeenButt", icon: Github, label: "GitHub" },
-                    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
-                    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
-                    { href: "https://instagram.com", icon: Instagram, label: "Instagram" },
+                    { href: "https://pk.linkedin.com/in/mobeen-b-60930b2b8", icon: Linkedin, label: "LinkedIn" },
+                    { href: "https://x.com/Mobeen914", icon: Twitter, label: "Twitter" },
                   ].map(({ href, icon: Icon, label }) => (
                     <motion.a
                       key={label}
