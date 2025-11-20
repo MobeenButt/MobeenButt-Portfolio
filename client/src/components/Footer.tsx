@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="flex items-center mt-4 text-sm text-gray-500">
               <span>Made with</span>
               <Heart className="h-4 w-4 mx-1 text-red-500" />
-              <span>and lots of coffee</span>
+              <span>and lots of chai</span>
             </div>
           </motion.div>
 
@@ -107,7 +107,7 @@ export default function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
         >
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} Mobeen Butt. All rights reserved. Built with React & TypeScript.
+            © {currentYear} Mobeen Butt. All rights reserved.
           </p>
           
           <motion.button
